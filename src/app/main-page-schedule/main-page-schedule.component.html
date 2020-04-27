@@ -1,0 +1,101 @@
+<div class="body-schedule">
+  <section class="title-schedule">
+    <div>
+      <h1>
+        Scheduler
+      </h1>
+    </div>
+
+
+    <div class="sort-task">
+      <mat-form-field>
+        <mat-label>sort by</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let food of foods;let i =index" (click)=sortBy(i) [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="search">
+      <input #search type="text" placeholder="Search" class="pl-2 input-search">
+      <span class="icon"><i class="fa fa-search"></i></span>
+    </div>
+  </section>
+
+  <section class="main-body-schedule">
+
+    <form>
+      <div class="main">
+        <div>
+          <input #input class="input" type="search" placeholder="Task description">
+        </div>
+        <input class="addTask ml-2" (click)="addTask(input);input.value =''"
+               type="submit"
+               value="Add task">
+
+      </div>
+
+    </form>
+    <div>
+      <div *ngFor="let task of filterTask;" class="hello">
+        <div class="check-box">
+
+        </div>
+        <div class="body-task" [ngStyle]="task.priority?{'background-color':'darkgray'}:{'background-color':'white'}">
+          <label class="chackbox">
+            <mat-checkbox [(ngModel)]="task.complete"
+                          (click)="complete(task,task.complete? task.complete = false: task.complete = true)"></mat-checkbox>
+          </label>
+          <form class="display-task">
+
+            <div class="d-flex align-items-center body-description">
+
+              <div *ngIf="task.edit === false" class="display-description">
+                <span>{{task.description}}</span>
+              </div>
+
+              <input   #editValue class="descriprion" *ngIf="task.edit === true" type="text"
+                     value="{{task.description}}">
+            </div>
+            <div class="d-flex body-buttons">
+              <div class="buttons">
+                <label>
+                  <button class="star-priority"
+                          (click)="update(editValue,task,task.edit? task.edit = false:task.edit = true)">
+                  <span class="material-icons" [ngStyle]="task.edit?{'color':'blue'}:{'color':'silver'}">
+               rate_review
+                   </span>
+                  </button>
+                </label>
+                <button class="star-priority"
+                        (click)="priority(task, task.priority? task.priority = false:task.priority = true)">
+              <span class="material-icons" [ngStyle]="task.priority?{'color':'yellow'}:{'color':'silver'}">
+                         grade
+                  </span></button>
+
+                <!--<button (click)="addCategory(task)">addCategory</button>-->
+
+              </div>
+              <label class="d-fle star">
+                <button type="submit" class="close" aria-label="Close" (click)="deleteTask(task.id)">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </label></div>
+          </form>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="check-all">
+    <mat-checkbox (click)="allComplete()">allComplete</mat-checkbox>
+  </div>
+</div>
+
+
