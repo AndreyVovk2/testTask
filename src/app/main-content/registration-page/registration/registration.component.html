@@ -1,0 +1,28 @@
+<div class="login mat-elevation-z8">
+  <form [formGroup]="registration">
+    <img
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWpdOPFbkXTawWAH0sZTVuTtHynPXNAcFZlr6rfwsRtUGvhHjv"
+      alt="image" class="registration-image">
+    <mat-form-field>
+      <input matInput type="text" placeholder="name" formControlName="name" maxlength="14">
+      <mat-error>
+        wrong field
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="email" placeholder="email" formControlName="email" maxlength="14">
+      <mat-error>
+        wrong field
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="password" formControlName="password" maxlength="14">
+      <mat-error>
+        fill in the field
+      </mat-error>
+    </mat-form-field>
+    <button type="submit" mat-raised-button  (click)="submit()">
+      sign up
+    </button>
+  </form>
+</div>

@@ -4,32 +4,33 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatIconModule, MatSliderModule} from '@angular/material';
-import {MainPageScheduleComponent} from './main-page-schedule/main-page-schedule.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {AngularMaterialModule} from './angular-material/angular-material.module';
-import {FormsModule} from '@angular/forms';
-import {HttpRequestService} from './main-page-schedule/service/http-request/http-request.service';
+import {MaterialModule} from './shared/material/material.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MainModule} from './main-content/main.module';
 import {HttpClientModule} from '@angular/common/http';
-import {NgbAlertModule, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { ModalDeleteComponent } from './shared/modals/modal-delete/modal-delete.component';
+import { ModalEditComponent } from './shared/modals/modal-edit/modal-edit.component';
+import { SelectButtonComponent } from './shared/select-button/select-button.component';
+import { TaskColumnComponent } from './shared/modals/task-column/task-column.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MainPageScheduleComponent,
+    ModalDeleteComponent,
+    ModalEditComponent,
+    SelectButtonComponent,
+    TaskColumnComponent
   ],
   imports: [
-    NgbModule,
-    NgbPaginationModule,
-    NgbAlertModule,
+    HttpClientModule,
+    MainModule,
+    MaterialModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    AngularMaterialModule,
-    FormsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

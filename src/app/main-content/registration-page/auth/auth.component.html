@@ -1,0 +1,20 @@
+<div class="login mat-elevation-z8">
+  <form [formGroup]="login">
+    <img src="https://pngimage.net/wp-content/uploads/2018/05/button-login-png-7.png" alt="image" class="login-image">
+    <mat-form-field>
+      <input matInput type="text" placeholder="name" maxlength="14" formControlName="name">
+      <mat-error>
+        wrong field
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="password" maxlength="14" formControlName="password">
+      <mat-error>
+        wrong field
+      </mat-error>
+    </mat-form-field>
+    <button type="submit" mat-raised-button (click)="loginSubmit()" [disabled]="!login.valid">
+      login
+    </button>
+  </form>
+</div>

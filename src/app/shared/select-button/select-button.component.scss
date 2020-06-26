@@ -1,0 +1,41 @@
+.select-buttons {
+  display: flex;
+  height: 13vh;
+  align-items: center;
+  justify-content: space-around;
+
+
+  .toggle-buttons {
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border-color: #DEBCAB;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(224, 189, 172, 1);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(224, 189, 172, 1);
+    box-shadow: 5px 5px 5px 0px rgba(224, 189, 172, 1);
+
+    .main-hide-input {
+      display: block;
+      opacity: 0;
+      border: 0;
+      background: transparent;
+      pointer-events: none;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+  }
+  toggle-buttons:hover {
+    background: burlywood;
+  }
+
+}
+
+
+.main-title {
+  text-align: center;
+}
+
+
+

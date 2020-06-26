@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Description</th>
+    <th scope="col">Date</th>
+    <th scope="col">Edit date</th>
+    <th scope="col">Edit task</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{dataTask.description}}</td>
+    <td>{{dataTask.date| date:'dd.MM.yyyy - HH:m:SS'}}</td>
+    <td>{{dataTask.editDate | date:'dd.MM.yyyy - HH:m:SS'}}</td>
+    <td>
+      <button class="btn btn-lg btn-primary add-todo" (click)="editTask(dataTask)">edit</button>
+    </td>
+    <td class="d-flex">
+      <button type="button" class="close" aria-label="Close" (click)="deleteTask(dataTask.id)">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </td>
+
+  </tr>
+  </tbody>
+</table>

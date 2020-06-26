@@ -1,0 +1,6 @@
+<app-select-button *ngIf="!edit" [title]="'edit this task?'" (index)="editDescription($event)"></app-select-button>
+<div class="enter-text" *ngIf="edit">
+  <input class="input-text"  [(ngModel)]="dataTask.description"
+         type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+  <button class="btn btn-lg btn-primary add-todo" (click)="editTask()" [disabled]="!dataTask.description">Edit</button>
+</div>

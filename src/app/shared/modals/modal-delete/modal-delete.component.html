@@ -1,0 +1,9 @@
+<!--<div class="delete-task">-->
+<!--  <span>Delete this task ?</span>-->
+<!--  <div class="buttons">-->
+<!--    <button (click)="deleteTask(false)">No</button>-->
+<!--    <button (click)="deleteTask(true)">Yes</button>-->
+<!--  </div>-->
+
+<!--</div>-->
+<app-select-button [title]="'delete this task?'" (index)="deleteTask($event)"></app-select-button>

@@ -1,0 +1,52 @@
+<div class="main-page">
+  <div><h1>todo list</h1></div>
+  <div class="body-head">
+    <input [(ngModel)]="taskDescription" type="text" class="form-control" aria-label="Small"
+           aria-describedby="inputGroup-sizing-sm">
+    <button type="button" (click)="addTodo()"
+            [disabled]="!taskDescription" class="btn btn-lg btn-primary add-todo">
+      save
+    </button>
+  </div>
+  <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> Number</th>
+      <td mat-cell *matCellDef="let element let i = index" (click)="openColumn(element)">{{i + 1}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Description</th>
+      <td mat-cell *matCellDef="let element" (click)="openColumn(element)"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Date</th>
+      <td mat-cell *matCellDef="let element"
+          (click)="openColumn(element)"> {{element.date| date:'dd.MM.yyyy - HH:m:SS'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="editDate">
+      <th mat-header-cell *matHeaderCellDef> Edit date</th>
+      <td mat-cell *matCellDef="let element"
+          (click)="openColumn(element)"> {{element.editDate| date:'dd.MM.yyyy - HH:m:SS'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef> edit</th>
+      <td mat-cell *matCellDef="let element">
+        <button class="btn btn-lg btn-primary add-todo" (click)="editTask(element)">edit</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Delete task</th>
+      <td mat-cell *matCellDef="let element" class="delete-task">
+        <button type="button" class="close" aria-label="Close" (click)="deleteTask(element.id)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="this.tableBasicExample.displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: this.tableBasicExample.displayedColumns;"></tr>
+  </table>
+</div>
+

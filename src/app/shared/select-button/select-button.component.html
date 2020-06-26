@@ -1,0 +1,13 @@
+<section class="toggle-section">
+  <div class="toggle-section-wrapper">
+    <h3 class="main-title mb-3">{{title}}</h3>
+  </div>
+  <div class="select-buttons ">
+    <div class="toggle-buttons" *ngFor="let one of options; let i = index" (click)="submitIndex(i +1)">
+      <label class="main-label" >
+        <input class="main-hide-input" name="option" type="radio">
+        <span class="main-input-block  label-buttons">{{one.text}}</span>
+      </label>
+    </div>
+  </div>
+</section>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainPageScheduleComponent } from './main-page-schedule.component';
+import { TaskColumnComponent } from './task-column.component';
 
-describe('MainPageScheduleComponent', () => {
-  let component: MainPageScheduleComponent;
-  let fixture: ComponentFixture<MainPageScheduleComponent>;
+describe('TaskColumnComponent', () => {
+  let component: TaskColumnComponent;
+  let fixture: ComponentFixture<TaskColumnComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainPageScheduleComponent ]
+      declarations: [ TaskColumnComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainPageScheduleComponent);
+    fixture = TestBed.createComponent(TaskColumnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

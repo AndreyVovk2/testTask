@@ -1,0 +1,27 @@
+.enter-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .edit-task {
+    display: block;
+    text-align: center;
+  }
+
+
+
+  .input-text {
+    height: 5vh;
+  }
+
+  .buttons {
+    height: 5vh;
+  }
+}
+
+

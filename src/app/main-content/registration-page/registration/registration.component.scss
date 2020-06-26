@@ -1,0 +1,29 @@
+.login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  button {
+    background-color: #c0a45a;
+    color: #ffffff;
+  }
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.registration-image{
+  width: 100%;
+}

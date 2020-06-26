@@ -5,15 +5,8 @@ import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpRequestService {
-
-  hello: {};
+export class ApiService {
   constructor(private http: HttpClient) {
-  }
-
-  getTask(getTask) {
-    this.hello = getTask;
-    console.log(this.hello);
   }
 
   get(path: string, params: any = {}): Observable<any> {

@@ -1,5 +1,5 @@
 {
-  "name": "test-task",
+  "name": "test-taskk",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -21,9 +21,7 @@
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
-    "@fortawesome/fontawesome-free": "^5.13.0",
-    "@ng-bootstrap/ng-bootstrap": "^5.3.1",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.5.0",
     "hammerjs": "^2.0.8",
     "json-server": "^0.16.1",
     "rxjs": "~6.4.0",
