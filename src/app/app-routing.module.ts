@@ -7,9 +7,9 @@ import {RoutingGuard} from './shared/guard/routing.guard';
 
 
 const routes: Routes = [
-  {path: '', component: RegistrationComponent, canActivate: [RoutingGuard]},
-  {path: 'auth', component: AuthComponent},
-  {path: 'main', component: MainPageComponent}
+  {path: '', component: RegistrationComponent},
+  {path: 'auth', component: AuthComponent, canActivate: [RoutingGuard]},
+  {path: 'main', component: MainPageComponent, canActivate: [RoutingGuard]}
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -11,26 +11,20 @@ export class RegistrationComponent implements OnInit {
 
   registration: FormGroup;
   check: boolean;
+
   constructor(private fb: FormBuilder,
               private router: Router) {
   }
 
   ngOnInit() {
     this.registrationValidator();
-    // console.log(localStorage.getItem('register'));
-    // if (localStorage.getItem('register') === null) {
-    //   return true;
-    // } else {
-    //   this.router.navigate(['auth']).finally();
-    //   return false;
-    // }
   }
 
   registrationValidator() {
     this.registration = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(12)]],
+      name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(12)]]
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]]
 
     });
   }
@@ -47,7 +41,7 @@ export class RegistrationComponent implements OnInit {
     localStorage.setItem('register', JSON.stringify(loginData));
     if (this.registration.valid) {
       this.check = false;
-      this.router.navigate(['main']).finally();
+      this.router.navigate(['auth']).finally();
     } else {
       this.check = true;
       this.registrationValidator();

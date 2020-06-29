@@ -1,3 +1,5 @@
+@import "src/app/shared/styles/shared-styles";
+
 .login {
   position: absolute;
   left: 50%;
@@ -10,11 +12,13 @@
     display: flex;
     flex-direction: column;
   }
+
   button {
     background-color: #c0a45a;
-    color: #ffffff;
+    color: $white;
   }
 }
+
 .example-form {
   min-width: 150px;
   max-width: 500px;
@@ -24,6 +28,7 @@
 .example-full-width {
   width: 100%;
 }
-.registration-image{
+
+.registration-image {
   width: 100%;
 }

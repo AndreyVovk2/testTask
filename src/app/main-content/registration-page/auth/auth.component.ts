@@ -11,6 +11,7 @@ export class AuthComponent implements OnInit {
 
   login: FormGroup;
   check: any;
+  invalidValue = false;
 
   constructor(
     private fb: FormBuilder,
@@ -26,26 +27,36 @@ export class AuthComponent implements OnInit {
   loginValidator() {
     this.login = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]]
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]]
 
     });
   }
 
   loginSubmit() {
+    const getDataRegister = JSON.parse(localStorage.getItem('register'));
     const loginData: any = {
+      step: 2,
       name: '',
       password: ''
     };
     loginData.name = this.login.controls.name.value;
     loginData.password = this.login.controls.password.value;
-    // this.localstorage = localStorage.setItem('arrayEvents', JSON.stringify(this.event));
-    localStorage.setItem('login', JSON.stringify(loginData));
     if (this.login.valid) {
       this.check = false;
-
     }
     this.check = true;
     this.loginValidator();
-    this.router.navigateByUrl('main').then();
+    if (getDataRegister.name === loginData.name && getDataRegister.password === loginData.password) {
+      localStorage.setItem('login', JSON.stringify(loginData));
+      this.router.navigateByUrl('main').then();
+    } else {
+      this.invalidValue = true;
+    }
+
   }
+
+  closePopup() {
+    this.invalidValue = false;
+  }
+
 }

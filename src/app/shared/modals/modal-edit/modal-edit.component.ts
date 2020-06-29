@@ -18,11 +18,9 @@ export class ModalEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.dataTask);
   }
 
   editDescription(v) {
-    console.log(v);
     if (v === 2) {
       this.edit = true;
     } else {
@@ -36,9 +34,7 @@ export class ModalEditComponent implements OnInit {
       date: this.dataTask.date,
       editDate: this.editDate
     };
-    console.log(editData);
     this.httpMainPageService.putTask(this.dataTask.id, editData).toPromise().then(res => {
-      console.log(res);
       this.dialogRef.close();
     });
   }

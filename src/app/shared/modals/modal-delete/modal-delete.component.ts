@@ -16,11 +16,9 @@ export class ModalDeleteComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.indexTask);
   }
 
   deleteTask(v): void {
-    console.log(v);
     if (v === 2) {
       this.httpMainPageService.deleteTask(this.indexTask.i).subscribe(res => {
         this.httpMainPageService.getTask();

@@ -1,26 +1,37 @@
-<div class="main-page">
+<div class="body-loader" *ngIf="!tasks">
+  <div class="loader"></div>
+</div>
+
+<div class="main-page" *ngIf="tasks">
   <div><h1>todo list</h1></div>
   <div class="body-head">
-    <input [(ngModel)]="taskDescription" type="text" class="form-control" aria-label="Small"
+    <input [(ngModel)]="taskDescription" type="text" class="form-control addTask" aria-label="Small"
+           placeholder="Enter task"
            aria-describedby="inputGroup-sizing-sm">
     <button type="button" (click)="addTodo()"
             [disabled]="!taskDescription" class="btn btn-lg btn-primary add-todo">
-      save
+      <span>save</span>
     </button>
-  </div>
-  <table mat-table [dataSource]="tasks" class="mat-elevation-z8">
 
-    <ng-container matColumnDef="position">
+  </div>
+  <div>
+    <input placeholder="search by description..." type="text" #search (input)="filter()" aria-label="Small"
+           class="form-control search"
+           aria-describedby="inputGroup-sizing-sm">
+  </div>
+  <table mat-table [dataSource]="getData" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="number">
       <th mat-header-cell *matHeaderCellDef> Number</th>
       <td mat-cell *matCellDef="let element let i = index" (click)="openColumn(element)">{{i + 1}}</td>
     </ng-container>
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Description</th>
-      <td mat-cell *matCellDef="let element" (click)="openColumn(element)"> {{element.description}} </td>
+      <td mat-cell *matCellDef="let element" (click)="openColumn(element)"><div class="body-description"><span> {{element.description}} </span></div></td>
     </ng-container>
 
-    <ng-container matColumnDef="weight">
+    <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Date</th>
       <td mat-cell *matCellDef="let element"
           (click)="openColumn(element)"> {{element.date| date:'dd.MM.yyyy - HH:m:SS'}} </td>
@@ -36,7 +47,7 @@
         <button class="btn btn-lg btn-primary add-todo" (click)="editTask(element)">edit</button>
       </td>
     </ng-container>
-    <ng-container matColumnDef="symbol">
+    <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef> Delete task</th>
       <td mat-cell *matCellDef="let element" class="delete-task">
         <button type="button" class="close" aria-label="Close" (click)="deleteTask(element.id)">

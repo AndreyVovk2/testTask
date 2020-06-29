@@ -1,8 +1,10 @@
+
 .enter-text {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 20vh;
+
   .buttons {
     display: flex;
     justify-content: space-around;
@@ -14,13 +16,17 @@
   }
 
 
-
   .input-text {
     height: 5vh;
   }
 
   .buttons {
     height: 5vh;
+  }
+
+  .add-todo {
+    margin-left: 5px;
+    border-radius: 10px;
   }
 }
 

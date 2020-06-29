@@ -1,12 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {HttpMainPageService} from '../../shared/service/http-main-page/http-main-page.service';
 import {TableBasicExample} from '../../shared/mat-table';
 import {MatDialog} from '@angular/material';
 import {ModalDeleteComponent} from '../../shared/modals/modal-delete/modal-delete.component';
 import {ModalEditComponent} from '../../shared/modals/modal-edit/modal-edit.component';
 import {Tasks} from '../../shared/service/interface/mat-table';
-import {take, takeUntil} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, mergeMap, take, takeUntil} from 'rxjs/operators';
 import {TaskColumnComponent} from '../../shared/modals/task-column/task-column.component';
+import {fromEvent, Observable} from 'rxjs';
 
 
 @Component({
@@ -16,11 +17,13 @@ import {TaskColumnComponent} from '../../shared/modals/task-column/task-column.c
 })
 
 
-export class MainPageComponent implements OnInit, OnDestroy {
+export class MainPageComponent implements OnInit {
+  @ViewChild('search', {static: false}) search: ElementRef;
   public taskDescription: string;
   public tasks: Tasks[];
   private date = new Date();
-  private data: any;
+  private $getSearch: Observable<any>;
+  private getData: Tasks[] = [];
 
 
   constructor(
@@ -28,19 +31,33 @@ export class MainPageComponent implements OnInit, OnDestroy {
     private dialog: MatDialog) {
   }
 
+
   ngOnInit() {
     this.displayTask();
-    this.data = this.tableBasicExample.dataSource;
-    console.log(this.data);
   }
 
-  ngOnDestroy() {
+
+  filter() {
+    this.$getSearch = fromEvent<any>(this.search.nativeElement, 'keyup')
+      .pipe(
+        map(event => event.target.value),
+        debounceTime(500),
+        distinctUntilChanged(
+        ));
+    this.$getSearch.subscribe((val: string) => {
+      this.getData = this.tasks.filter(item => {
+        if (item.description.toLocaleLowerCase().includes(val.toLocaleLowerCase())) {
+          return item;
+        }
+      });
+    });
   }
 
   displayTask(): void {
     this.httpMainPageService.getTask().pipe(take(1)).subscribe(res => {
       this.tasks = res;
-      console.log(this.tasks);
+      this.getData = this.tasks;
+
     }, error => console.log(error));
   }
 
@@ -51,8 +68,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
       editDate: ''
     };
     this.httpMainPageService.addTask(submitData).pipe(take(1)).subscribe(res => {
-      console.log(res);
-      console.log(this.taskDescription.length);
       this.taskDescription = '';
       this.displayTask();
     }, error => console.log(error));

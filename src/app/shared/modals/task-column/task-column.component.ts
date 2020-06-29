@@ -16,7 +16,6 @@ export class TaskColumnComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.dataTask);
   }
 
 

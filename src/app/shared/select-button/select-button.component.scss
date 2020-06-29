@@ -26,14 +26,24 @@
       height: 0;
     }
   }
-  toggle-buttons:hover {
-    background: burlywood;
-  }
+
 
 }
 
+.toggle-buttons:hover {
+  background: #deb887;
+  background: linear-gradient(to top, #eadcea, #dbbd96, burlywood, #c28534);
+
+}
+
+.toggle-buttons:active {
+  transform: translateY(5px);
+}
 
 .main-title {
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
   text-align: center;
 }
 

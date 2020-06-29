@@ -10,13 +10,10 @@ export class RoutingGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean | UrlTree {
-    console.log(localStorage.getItem('register'));
-    if (localStorage.getItem('register') === null && localStorage.getItem('login') === null) {
-      return true;
+    if (localStorage.getItem('register') === null && localStorage.getItem('auth') === null) {
+      this.router.navigateByUrl('').then();
     } else {
-      this.router.navigate(['auth']).finally();
-      return false;
+      return true;
     }
   }
-
 }

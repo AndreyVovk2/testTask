@@ -1,16 +1,31 @@
+<div class="alert alert-primary" role="alert" *ngIf="invalidValue">
+  wrong username or password
+  <span class="closePopup" (click)="closePopup()">&times;</span>
+</div>
+
 <div class="login mat-elevation-z8">
   <form [formGroup]="login">
     <img src="https://pngimage.net/wp-content/uploads/2018/05/button-login-png-7.png" alt="image" class="login-image">
     <mat-form-field>
       <input matInput type="text" placeholder="name" maxlength="14" formControlName="name">
-      <mat-error>
-        wrong field
+      <mat-error *ngIf=" (login.controls.name.dirty|| login.controls.name.touched) &&
+       login.controls.name.value.length < 4">
+        enter more letters
+      </mat-error>
+      <mat-error *ngIf=" (login.controls.name.dirty|| login.controls.name.touched )&&
+       login.controls.name.value.length > 10">
+        enter fewer letters
       </mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput type="password" placeholder="password" maxlength="14" formControlName="password">
-      <mat-error>
-        wrong field
+      <mat-error *ngIf=" (login.controls.password.dirty|| login.controls.password.touched) &&
+       login.controls.name.value.length < 4">
+        enter more letters
+      </mat-error>
+      <mat-error *ngIf=" (login.controls.password.dirty|| login.controls.password.touched) &&
+       login.controls.name.value.length > 10">
+        enter fewer letters
       </mat-error>
     </mat-form-field>
     <button type="submit" mat-raised-button (click)="loginSubmit()" [disabled]="!login.valid">
